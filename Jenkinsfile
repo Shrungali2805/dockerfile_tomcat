@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('Pull') {
             steps {
+                sh 'git init '
                 echo "Successful pull from Git"
                 git 'https://github.com/deepak-umre/dockerfile_tomcat.git'
             }
