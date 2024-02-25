@@ -14,8 +14,10 @@ pipeline {
             steps {
                 echo "Building with Maven"
                 sh 'mvn clean package'
+                }
             }
         }
+    
         stage('Deploy on Tomcat') {
             agent {
                 label 'docker'
@@ -28,6 +30,7 @@ pipeline {
                     docker push deepakumre/tomcat1'''
                 }
             }
+        }
         stage('Deploy on Tomcat') {
             agent {
                 label 'docker'
@@ -36,7 +39,19 @@ pipeline {
                 script {
                     sh 'kubectl apply -f deployment.yaml'
                 }
-            
+            }
+        }
+        stage('Deploy on Tomcat') {
+            agent {
+                label 'docker'
+            }
+            steps {
+                script {
+                    sh '''kubectl get pods -o wide 
+                    kubectl get nodes -o wide 
+                    kubectl get svc -o wide '''
+                    }
+               }
+            }
         }
     }
-}
