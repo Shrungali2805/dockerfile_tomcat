@@ -17,7 +17,7 @@ pipeline {
             }
         }
     
-        stage('Deploy on Tomcat') {
+        stage('creating tomcat image Tomcat') {
             agent {
                 label 'docker'
             }
@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy on Tomcat') {
+        stage('build image on k8 ') {
             agent {
                 label 'docker'
             }
@@ -40,7 +40,7 @@ pipeline {
                 }
             }
         }
-        stage('Deploy on Tomcat') {
+        stage('getting info') {
             agent {
                 label 'docker'
             }
