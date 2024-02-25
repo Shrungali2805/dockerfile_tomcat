@@ -24,7 +24,7 @@ pipeline {
             }
             steps {
                 script {
-                    sh '''cp -r /var/lib/jenkins/workspace/deploy/target .
+                    sh '''cp -r /var/lib/jenkins/workspace/deploy/target/*.war .
                     docker build -t deepakumre/tomcat1 . 
                     docker login 
                     docker push deepakumre/tomcat1'''
@@ -49,7 +49,8 @@ pipeline {
                 script {
                     sh '''kubectl get pods -o wide 
                     kubectl get nodes -o wide 
-                    kubectl get svc -o wide '''
+                    kubectl get svc -o wide 
+                    ls /var/lib/jenkins/workspace/deploy/target/'''
                     }
                }
             }
