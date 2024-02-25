@@ -10,11 +10,10 @@ pipeline {
         stage('Build') {
             agent {
                 label 'docker'
-
+            }
             steps {
                 echo "Building with Maven"
                 sh 'mvn clean package'
-                }
             }
         }
     
@@ -51,8 +50,7 @@ pipeline {
                     kubectl get nodes -o wide 
                     kubectl get svc -o wide 
                     ls /var/lib/jenkins/workspace/deploy/target/'''
-                    }
-               }
+                }
             }
         }
     }
